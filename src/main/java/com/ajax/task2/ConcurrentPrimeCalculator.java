@@ -30,17 +30,17 @@ public final class ConcurrentPrimeCalculator extends PrimeCalculatorContract {
 
     private class Worker implements Runnable {
         private final List<Integer> list;
-        private final int candidat;
+        private final int candidate;
 
         public Worker(List<Integer> list, int candidat) {
             this.list = list;
-            this.candidat = candidat;
+            this.candidate = candidat;
         }
 
         @Override
         public void run() {
-            if (isPrime(candidat))
-                list.add(candidat);
+            if (isPrime(candidate))
+                list.add(candidate);
         }
     }
 }

@@ -11,7 +11,7 @@ public final class ConcurrentPrimeCalculator extends PrimeCalculatorContract {
         List<Integer> primeNumbers = new CopyOnWriteArrayList<>();
 
         List<Thread> threads = new ArrayList<>(limit / 2 + 1);
-        for (int i = 1; i < limit; i += 2) {
+        for (int i = 2; i <= limit; i++) {
             Thread thread = new Thread(new Worker(primeNumbers, i));
             threads.add(thread);
             thread.start();
@@ -28,7 +28,7 @@ public final class ConcurrentPrimeCalculator extends PrimeCalculatorContract {
         return primeNumbers;
     }
 
-    private class Worker implements Runnable {
+    private final class Worker implements Runnable {
         private final List<Integer> list;
         private final int candidate;
 
